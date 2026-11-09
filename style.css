@@ -58,9 +58,13 @@ select {
     align-items: center;
 
     justify-content: center;
-
     background:
         url("images/bg.jpg") center center / cover no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
 }
 
 

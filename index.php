@@ -32,7 +32,7 @@ $result_story = mysqli_query($conn, "SELECT * FROM love_story WHERE id_mempelai 
 <body>
 
     <!-- =====================================================
-         01. COVER
+        01. COVER
     ====================================================== -->
     <section class="page cover" id="cover">
         <div class="cover-card">
