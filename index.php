@@ -54,7 +54,7 @@ $result_story = mysqli_query($conn, "SELECT * FROM love_story WHERE id_mempelai 
     <div id="main-content">
         
         <!-- =====================================================
-             02. DOA
+            02. DOA
         ====================================================== -->
         <section class="page doa" id="doa">
             <div class="doa-decoration">─────── ✦ ───────</div>
@@ -110,7 +110,7 @@ $result_story = mysqli_query($conn, "SELECT * FROM love_story WHERE id_mempelai 
         </section>
 
         <!-- =====================================================
-             04. AKAD
+            04. AKAD
         ====================================================== -->
         <section class="page event-page" id="akad">
             <div class="event-grid">
@@ -143,7 +143,7 @@ $result_story = mysqli_query($conn, "SELECT * FROM love_story WHERE id_mempelai 
         </section>
 
         <!-- =====================================================
-             05. RESEPSI
+            05. RESEPSI
         ====================================================== -->
         <section class="page event-page" id="reception">
             <div class="event-grid">
@@ -249,7 +249,7 @@ $result_story = mysqli_query($conn, "SELECT * FROM love_story WHERE id_mempelai 
         </section>
 
         <!-- =====================================================
-             09. ADMIN LOGIN
+            09. ADMIN LOGIN
         ====================================================== -->
         <section class="page admin-login" id="admin-login">
             <div class="admin-login-card">
@@ -271,14 +271,25 @@ $result_story = mysqli_query($conn, "SELECT * FROM love_story WHERE id_mempelai 
 
     </div> <!-- PENUTUP MAIN CONTENT -->
 
+    <!-- BACKGROUND MUSIC -->
+    <audio id="wedding-music" controls loop>
+        <source src="musik/Mari Kita Coba - Sisca Kohl (Lirik Lagu).mp3" type="audio/mpeg">
+    </audio>
+
     <!-- Script Animasi Pembuka Undangan -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const btnBuka = document.getElementById("btn-buka");
             const cover = document.getElementById("cover");
             const mainContent = document.getElementById("main-content");
+            const music = document.getElementById("wedding-music");
 
             btnBuka.addEventListener("click", function() {
+
+            music.play().catch(function(error) {
+        console.log("Musik gagal diputar:", error);
+    });
+
                 cover.style.opacity = "0";
                 setTimeout(function() {
                     cover.style.display = "none";
