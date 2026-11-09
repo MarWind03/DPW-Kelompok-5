@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard Undangan Digital</title>
+    <!-- Font Google: Great Vibes, Playfair Display, Plus Jakarta Sans -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= 1. LOGIN ADMIN ================= -->
+    <div id="login-view">
+        <div class="login-wrapper">
+            <svg class="flower-top-right" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="90" cy="30" r="25" fill="#a8c0d6" opacity="0.65" />
+                <circle cx="70" cy="50" r="18" fill="#cbe0f0" opacity="0.7" />
+                <circle cx="105" cy="60" r="12" fill="#7a97b8" opacity="0.6" />
+                <path d="M50 20 Q70 10 90 20 T100 40" stroke="#779169" stroke-width="2" fill="none" />
+            </svg>
+
+            <svg class="flower-bottom-left" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="30" cy="90" r="25" fill="#a8c0d6" opacity="0.65" />
+                <circle cx="50" cy="70" r="18" fill="#cbe0f0" opacity="0.7" />
+                <circle cx="20" cy="60" r="12" fill="#7a97b8" opacity="0.6" />
+                <path d="M70 100 Q50 110 30 100 T20 80" stroke="#779169" stroke-width="2" fill="none" />
+            </svg>
+
+            <div class="login-header">
+                <h1 class="login-title font-cursive">Admin<br>Login</h1>
+                <div class="divider-line">
+                    <div class="divider-diamond"></div>
+                </div>
+            </div>
+
+            <div class="login-form-container">
+                <div id="login-error" class="error-message">Username atau Password salah!</div>
+                <form onsubmit="handleLogin(event)">
+                    <div class="input-box">
+                        <span class="input-icon-left">✉</span>
+                        <input type="text" id="login-user" placeholder="Email/Username" required>
+                    </div>
+
+                    <div class="input-box">
+                        <span class="input-icon-left">🔒</span>
+                        <input type="password" id="login-pass" placeholder="Password" required>
+                        <span class="toggle-password" onclick="togglePass()">👁</span>
+                    </div>
+
+                    <button type="submit" class="btn-login-custom">◆ Login ◆</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= 2. DASHBOARD VIEW ================= -->
+    <div id="dashboard-view">
+        <!-- SIDEBAR SESUAI REFERENSI GAMBAR -->
+        <div class="sidebar">
+            <div class="sidebar-brand font-cursive">Ayu & Kevin</div>
+            <ul class="sidebar-menu">
+                <li><a href="#" class="active" onclick="switchMenu('edit-landing', this)">Edit Landing Page</a></li>
+                <li><a href="#" onclick="switchMenu('data-tamu', this)">Data Tamu & Ucapan</a></li>
+            </ul>
+            <button class="btn-logout" onclick="handleLogout()">Keluar</button>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="main-content">
+
+            <!-- SECTION PENGATURAN LANDING PAGE -->
+            <div id="edit-landing" class="content-section active">
+                <div class="header-title">
+                    <h1 class="font-serif">Pengaturan Landing Page</h1>
+                    <p>Kelola informasi mempelai, waktu acara, dan galeri foto undangan.</p>
+                </div>
+
+                <div class="card-box">
+                    <!-- Tab Menu Navigation -->
+                    <div class="tab-navigation">
+                        <button class="tab-btn" onclick="switchTab('tab-mempelai', this)">Info Mempelai</button>
+                        <button class="tab-btn" onclick="switchTab('tab-acara', this)">Waktu & Lokasi</button>
+                        <button class="tab-btn active" onclick="switchTab('tab-galeri', this)">Galeri & Story</button>
+                    </div>
+
+                    <!-- Tab Content 1: Info Mempelai -->
+                    <div id="tab-mempelai" class="tab-content">
+                        <div class="form-group">
+                            <label>Nama Pengantin Wanita</label>
+                            <input type="text" class="form-control" value="Ayu">
+                        </div>
+                        <div class="form-group">
+                            <label>Nama Pengantin Pria</label>
+                            <input type="text" class="form-control" value="Kevin">
+                        </div>
+                    </div>
+
+                    <!-- Tab Content 2: Waktu & Lokasi -->
+                    <div id="tab-acara" class="tab-content">
+                        <div class="form-group">
+                            <label>Tanggal Resepsi</label>
+                            <input type="text" class="form-control" value="Rabu, 30 September 2026">
+                        </div>
+                        <div class="form-group">
+                            <label>Waktu Acara</label>
+                            <input type="text" class="form-control" value="08:00 - Selesai">
+                        </div>
+                        <div class="form-group">
+                            <label>Alamat Tempat Resepsi</label>
+                            <input type="text" class="form-control" value="Edelweiss Wedding Hall, Jakarta">
+                        </div>
+                    </div>
+
+                    <!-- Tab Content 3: Galeri & Story (TAMPILAN EXAK GAMBAR 1) -->
+                    <div id="tab-galeri" class="tab-content active">
+                        <div class="form-group">
+                            <label>Kutipan / Ayat Undangan</label>
+                            <textarea class="form-control"
+                                rows="3">Dan di antara tanda-tanda kekuasaan-Nya diciptakan-Nya untukmu pasangan hidup dari jenismu sendiri...</textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Upload Foto Prewedding (Multiple)</label>
+                            <input type="file" class="form-control" multiple>
+                        </div>
+                    </div>
+
+                    <!-- Tombol Simpan Perubahan -->
+                    <button class="btn-simpan" onclick="alert('Perubahan berhasil disimpan!')">Simpan Perubahan</button>
+                </div>
+            </div>
+
+            <!-- SECTION DATA TAMU -->
+            <div id="data-tamu" class="content-section">
+                <div class="header-title">
+                    <h1 class="font-serif">Manajemen Data Tamu</h1>
+                    <p>Rekapitulasi status dan jumlah konfirmasi kehadiran tamu.</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total Tamu</h3>
+                        <p id="stat-total">3</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Hadir</h3>
+                        <p id="stat-hadir">1</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Tidak Hadir</h3>
+                        <p id="stat-tidak">1</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Pending</h3>
+                        <p id="stat-pending">1</p>
+                    </div>
+                </div>
+
+                <div class="card-box">
+                    <div class="card-header-flex">
+                        <h3 class="font-serif" style="font-size: 20px; color: var(--text-navy);">Daftar Undangan</h3>
+                        <button class="btn-simpan" style="padding: 8px 18px; font-size: 14px;"
+                            onclick="openModalTambah()">+ Tambah Tamu</button>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama Tamu</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tamu-tbody">
+                            <!-- Data Tamu Render -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- MODAL TAMBAH TAMU -->
+    <div class="modal" id="modal-tamu">
+        <div class="modal-box">
+            <span class="close-modal" onclick="closeModalTambah()">&times;</span>
+            <h3 class="font-serif" style="margin-bottom: 18px; color: var(--text-navy);">Tambah Tamu Undangan</h3>
+            <div class="form-group">
+                <label>Nama Tamu</label>
+                <input type="text" id="inp-nama-tamu" class="form-control" placeholder="Masukkan nama tamu...">
+            </div>
+            <button class="btn-simpan" style="width: 100%;" onclick="tambahTamu()">Simpan Data</button>
+        </div>
+    </div>
+
+    <script>
+        // Data Tamu Dummy
+        let daftarTamu = [
+            { id: 1, nama: "Budi Santoso", status: "Hadir" },
+            { id: 2, nama: "Siti Rahma", status: "Tidak Hadir" },
+            { id: 3, nama: "Ahmad Dani", status: "Pending" }
+        ];
+
+        function togglePass() {
+            const input = document.getElementById('login-pass');
+            input.type = input.type === 'password' ? 'text' : 'password';
+        }
+
+        // Login Handler (Validasi: admin / admin123)
+        function handleLogin(e) {
+            e.preventDefault();
+            const userInp = document.getElementById('login-user').value.trim();
+            const passInp = document.getElementById('login-pass').value.trim();
+            const errorMsg = document.getElementById('login-error');
+
+            if (userInp === 'admin' && passInp === 'admin123') {
+                errorMsg.style.display = 'none';
+                document.getElementById('login-view').style.display = 'none';
+                document.getElementById('dashboard-view').style.display = 'flex';
+                renderTamuTable();
+            } else {
+                errorMsg.style.display = 'block';
+            }
+        }
+
+        function handleLogout() {
+            document.getElementById('login-user').value = '';
+            document.getElementById('login-pass').value = '';
+            document.getElementById('login-error').style.display = 'none';
+            document.getElementById('dashboard-view').style.display = 'none';
+            document.getElementById('login-view').style.display = 'flex';
+        }
+
+        // Sidebar Navigation
+        function switchMenu(sectionId, element) {
+            document.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active'));
+            document.querySelectorAll('.sidebar-menu a').forEach(a => a.classList.remove('active'));
+
+            document.getElementById(sectionId).classList.add('active');
+            element.classList.add('active');
+        }
+
+        // Tab Navigation
+        function switchTab(tabId, element) {
+            document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(tabId).classList.add('active');
+            element.classList.add('active');
+        }
+
+        // Render Data Tamu & Hitung Statistik
+        function renderTamuTable() {
+            const tbody = document.getElementById('tamu-tbody');
+            tbody.innerHTML = '';
+
+            let hadir = 0, tidak = 0, pending = 0;
+
+            daftarTamu.forEach((item, idx) => {
+                if (item.status === 'Hadir') hadir++;
+                else if (item.status === 'Tidak Hadir') tidak++;
+                else pending++;
+
+                let badgeClass = item.status === 'Hadir' ? 'badge-success' : (item.status === 'Tidak Hadir' ? 'badge-danger' : 'badge-warning');
+
+                tbody.innerHTML += `
+                    <tr>
+                        <td>${idx + 1}</td>
+                        <td><b>${item.nama}</b></td>
+                        <td><span class="badge ${badgeClass}">${item.status}</span></td>
+                        <td>
+                            <button class="btn-simpan" style="font-size: 12px; padding: 5px 12px; border-radius: 6px;" onclick="salinLink('${item.nama}')">Salin Link</button>
+                            <button class="btn-danger-sm" onclick="hapusTamu(${item.id})">Hapus</button>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            document.getElementById('stat-total').innerText = daftarTamu.length;
+            document.getElementById('stat-hadir').innerText = hadir;
+            document.getElementById('stat-tidak').innerText = tidak;
+            document.getElementById('stat-pending').innerText = pending;
+        }
+
+        // Modal Logic
+        function openModalTambah() {
+            document.getElementById('modal-tamu').classList.add('active');
+        }
+
+        function closeModalTambah() {
+            document.getElementById('modal-tamu').classList.remove('active');
+            document.getElementById('inp-nama-tamu').value = '';
+        }
+
+        function tambahTamu() {
+            const nama = document.getElementById('inp-nama-tamu').value.trim();
+            if (!nama) return alert('Nama tamu wajib diisi!');
+
+            daftarTamu.push({
+                id: Date.now(),
+                nama: nama,
+                status: 'Pending'
+            });
+
+            closeModalTambah();
+            renderTamuTable();
+        }
+
+        function hapusTamu(id) {
+            if (confirm('Yakin ingin menghapus tamu ini?')) {
+                daftarTamu = daftarTamu.filter(t => t.id !== id);
+                renderTamuTable();
+            }
+        }
+
+        function salinLink(nama) {
+            const url = `https://undangan.com?to=${encodeURIComponent(nama)}`;
+            navigator.clipboard.writeText(url);
+            alert(`Link khusus untuk ${nama} berhasil disalin!`);
+        }
+
+        // Initial Render
+        renderTamuTable();
+    </script>
+</body>
+
+</html>
