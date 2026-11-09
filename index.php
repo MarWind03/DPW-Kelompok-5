@@ -290,6 +290,74 @@ $result_story = mysqli_query($conn, "SELECT * FROM love_story WHERE id_mempelai 
                 }, 800);
             });
         });
+
+        // =====================================
+// LIGHTBOX GALERI
+// =====================================
+
+document.addEventListener("DOMContentLoaded", function() {
+
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const closeBtn = document.getElementById("lightbox-close");
+
+    // Klik gambar galeri
+    document.querySelectorAll(".gallery-photo img").forEach(function(img) {
+
+        img.addEventListener("click", function() {
+
+            lightboxImg.src = this.src;
+            lightboxImg.alt = this.alt;
+
+            lightbox.classList.add("active");
+
+            // Mencegah halaman ikut scroll
+            document.body.style.overflow = "hidden";
+
+        });
+
+    });
+
+    // Fungsi menutup lightbox
+    function closeLightbox() {
+
+        lightbox.classList.remove("active");
+
+        document.body.style.overflow = "";
+
+        lightboxImg.src = "";
+
+    }
+
+    // Tombol X
+    closeBtn.addEventListener("click", closeLightbox);
+
+    // Klik area luar gambar
+    lightbox.addEventListener("click", function(e) {
+
+        if (e.target === lightbox) {
+            closeLightbox();
+        }
+
+    });
+
+    // Tombol Escape
+    document.addEventListener("keydown", function(e) {
+
+        if (e.key === "Escape") {
+            closeLightbox();
+        }
+
+    });
+
+});
     </script>
+    <!-- LIGHTBOX / PREVIEW FOTO -->
+    <div id="lightbox" class="lightbox">
+    <button class="lightbox-close" id="lightbox-close">&times;</button>
+
+    <img id="lightbox-img" src="" alt="Preview Foto">
+
+</div>
 </body>
 </html>
